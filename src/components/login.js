@@ -1,21 +1,42 @@
-import React from 'react'
-import {Link} from "react-router-dom"
+import React, { useState } from 'react'
+import {Link,useNavigate} from "react-router-dom"
 import {Form} from "react-bootstrap"
 import { Button } from "react-bootstrap"
 import GoogleButton from 'react-google-button'
-
+import { useUserAuth } from '../context/userAuthContext'
 const Login = () => {
+    const [email,setEmail]=useState("");
+    const [password,setPassword]=useState("");
+    const [error,setError]=useState("")
+    const {login}=useUserAuth();
+    const navigate=useNavigate();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError("");
+        try {
+            await login(email,password);
+            navigate("/home");
+            
+        } catch (err) {
+            setError(err.message);
+        }
+    };
   return (
    <>
     <div className="p-4 box">
         <h2 className='mb-3'>Firebase Auth Login</h2>
-        <Form>
+        <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Control type="email" placeholder="Email Address"></Form.Control>
+                <Form.Control type="email" placeholder="Email Address"
+                onChange={(e)=> setEmail(e.target.value)}
+                />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Control type="password" placeholder="Password"></Form.Control>
+                <Form.Control type="password" placeholder="Password"
+                onChange={(e)=> setPassword(e.target.value)}
+               />
             </Form.Group>
 
             <div className="d-grid gap-2">

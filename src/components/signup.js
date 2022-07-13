@@ -17,12 +17,12 @@ const Signup = () => {
         setError("");
         try {
             await signUp(email,password);
-            navigate("/");
+            navigate("/login");
             
         } catch (err) {
             setError(err.message);
         }
-    }
+    };
   return (
     <>
     <div className="p-4 box">
@@ -52,7 +52,7 @@ const Signup = () => {
     </div>
 
     <div className="p-4 box mt-3 text-center">
-     Already have an account? <Link to="/">Login</Link>  
+     Already have an account? <Link to="/login">Login</Link>  
     </div>
 </>
   )

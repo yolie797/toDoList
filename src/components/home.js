@@ -1,9 +1,14 @@
 import React from "react";
-import { Button } from "bootstrap";
+import { Button } from "react-bootstrap";
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <>
+    <div className="p-4 box mt-3 text-center">Hello Welcome</div>
+    <div className="d-grid gap-2">
+      <Button variant="primary">Log Out</Button>
+    </div>
+    </>
   )
 }
 

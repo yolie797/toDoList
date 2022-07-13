@@ -25,7 +25,7 @@ useEffect(()=>{
  },[]);
 
 
-    return <userAuthContext.Provider value={{user,signUp}}>{children}</userAuthContext.Provider>
+    return <userAuthContext.Provider value={{user,signUp,login}}>{children}</userAuthContext.Provider>
 }
 
 
